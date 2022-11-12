@@ -29,10 +29,10 @@ const ServicesSection = () => {
 
 
     return (
-        <section>
+        <section className='my-12'>
         <h3 className='text-primary text-center'>OUR SERVICES</h3>
         
-        <h2>Services We Provides</h2>
+        <h2 className='text-center text-xl'>Services We Provides</h2>
 
 
         <div className='grid grid-cols-3 gap-4 my-5'>
