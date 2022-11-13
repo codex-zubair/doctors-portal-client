@@ -1,7 +1,9 @@
 import React from 'react';
 import Banner from '../../Components/Banner/Banner';
+import AppointmentSection from '../../Sections/AppointmentSection/AppointmentSection';
 import DentalCareSection from '../../Sections/DentalCareSection/DentalCareSection';
 import HomeInfoSection from '../../Sections/HomeInfoSection/HomeInfoSection';
+import ReviewSection from '../../Sections/ReviewSection/ReviewSection';
 import ServicesSection from '../../Sections/ServicesSection/ServicesSection';
 
 const Home = () => {
@@ -11,6 +13,8 @@ const Home = () => {
             <HomeInfoSection></HomeInfoSection>
             <ServicesSection></ServicesSection>
             <DentalCareSection></DentalCareSection>
+            <AppointmentSection></AppointmentSection>
+            <ReviewSection></ReviewSection>
 
 
           
