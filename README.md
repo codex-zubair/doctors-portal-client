@@ -2,9 +2,6 @@
 # React Web Application
 
 
-
-
-
 # Framework
 ### Tailwind CSS
 ### Daisy UI
@@ -13,3 +10,4 @@
 
 # NPM Packages
 ### npm install react-router-dom
+### npm install react-day-picker date-fns
