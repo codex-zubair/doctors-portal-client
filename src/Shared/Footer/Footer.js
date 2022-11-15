@@ -7,7 +7,7 @@ const Footer = () => {
     // TODO Background Image positioning.
     return (
 
-        <footer className=" p-10 text-base-content" style={{backgroundImage:`url(${footer})`}}>
+        <footer className=" p-10 text-base-content" style={{backgroundImage:`url(${footer})`, backgroundSize:'cover'}}>
 
             <div className='footer'>
                 <div>
