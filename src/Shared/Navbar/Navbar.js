@@ -8,6 +8,7 @@ const Navbar = () => {
 
     const navItem = <React.Fragment>
         <NavLink className='mx-2' to='/'>Home</NavLink>
+        <NavLink className='mx-2' to='/dashboard'>Dashboard</NavLink>
         <NavLink className='mx-2' to='/about'>About</NavLink>
         <NavLink className='mx-2' to='/appointment'>Appointment</NavLink>
         <NavLink className='mx-2' to='/reviews'>Reviews</NavLink>
@@ -15,7 +16,7 @@ const Navbar = () => {
         <NavLink className='mx-2' to='/login'>Login</NavLink>
         <NavLink className='mx-2' to='/register'>Register</NavLink>
         <NavLink onClick={()=> logOut()}>Logout</NavLink>
-        <p>{user?.email}</p>
+        <NavLink>{user?.email}</NavLink>
     </React.Fragment>
 
 

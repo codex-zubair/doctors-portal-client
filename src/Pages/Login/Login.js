@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { userAuthContext } from '../../Context/UserContext';
 
 const Login = () => {
@@ -9,6 +9,11 @@ const Login = () => {
 
     const { LoginWithGoogle, LoginByEmail } = useContext(userAuthContext);
 
+
+    // Location 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
 
 
     const [error, setError] = useState(null);
@@ -29,8 +34,6 @@ const Login = () => {
             })
             .catch(error => {
                 setError(error.message);
-
-
             })
 
     };
@@ -50,7 +53,14 @@ const Login = () => {
     // Login by google
     const LoginWithGoogleHandler = () => {
         LoginWithGoogle()
-            .then(data => toast.success("Login Successful"))
+            .then(data => {
+                toast.success("Login Successful");
+
+                setTimeout(() => {
+                    navigate(from, {replace:true})
+                }, (1));
+                
+            })
             .catch(error => setError(error))
     }
 

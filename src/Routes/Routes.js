@@ -3,10 +3,12 @@ import Main from "../Layout/Main/Main";
 import About from "../Pages/About/About";
 import Appointment from "../Pages/Appointment/Appointment";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import Dashboard from "../Pages/Dashboard/Dashboard";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Reviews from '../Pages/Reviews/Reviews'
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -33,6 +35,11 @@ export const route = createBrowserRouter([
         },
         {
             path: '/register' , element: <Register></Register>
+        },
+        {
+            path: '/dashboard' , element: <PrivateRoute>
+                <Dashboard></Dashboard>
+            </PrivateRoute>
         },
     ]}
 ])
