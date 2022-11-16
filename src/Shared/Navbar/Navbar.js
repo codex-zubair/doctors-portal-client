@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { userAuthContext } from '../../Context/UserContext';
 
 const Navbar = () => {
 
+    const {user, logOut} = useContext(userAuthContext);
 
     const navItem = <React.Fragment>
         <NavLink className='mx-2' to='/'>Home</NavLink>
@@ -12,7 +14,10 @@ const Navbar = () => {
         <NavLink className='mx-2' to='/contact-us'>Contact Us</NavLink>
         <NavLink className='mx-2' to='/login'>Login</NavLink>
         <NavLink className='mx-2' to='/register'>Register</NavLink>
+        <NavLink onClick={()=> logOut()}>Logout</NavLink>
+        <p>{user?.email}</p>
     </React.Fragment>
+
 
 
 

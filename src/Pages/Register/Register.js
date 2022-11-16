@@ -6,15 +6,34 @@ import { userAuthContext } from '../../Context/UserContext';
 
 const Register = () => {
 
-    const { emailSignUp } = useContext(userAuthContext);
+    const { emailSignUp ,logOut} = useContext(userAuthContext);
 
 
-    const [form,setForm] = useState({});
+    // const [form,setForm] = useState({});
     const [error, setError] = useState(null);
 
     // Form values.
     const { register, handleSubmit,watch, formState: { errors } } = useForm();
-    const onSubmit = data => setForm(data);
+   
+   
+   
+   
+//    register form
+    const onSubmit = data => {
+        emailSignUp(data.email,data.password)
+        .then(data=> {
+            setError('Sign Up Success!');
+            toast.success('Congrats!', {icon:':)'})
+            console.log(data)
+            logOut();
+        })
+        .catch(error=> {
+            setError(error.message)
+            console.log(error)
+            console.log(data)
+
+        })
+    };
 
     // console.log(watch("exampleRequired")); // watch input value by passing the name of it
 
@@ -27,17 +46,6 @@ const Register = () => {
 
 
 
-    // login by email
-    const emailLoginHandler = ()=> {
-
-        emailSignUp(form.email,form.password)
-        .then(data=> {
-            setError('Sign Up Success!');
-            toast.success('Congrats!', {icon:':)'})
-        })
-        .catch(error=> setError(error.message))
-
-    }
 
 
 
@@ -82,7 +90,7 @@ const Register = () => {
                 <span>{error}</span>
             </div>
 
-             <button disabled={password === ''|| email ===''} onClick={emailLoginHandler} className='btn text-white' type="submit">Sign Up</button>
+             <button disabled={password === ''|| email ===''} className='btn text-white' type="submit">Sign Up</button>
         </form>
     );
 };
