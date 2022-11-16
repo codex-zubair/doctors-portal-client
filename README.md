@@ -13,4 +13,4 @@
 ### npm install react-day-picker date-fns
 ### npm install react-hot-toast
 ### npm install react-hook-form
-### Firebase
+### npm install firebase
