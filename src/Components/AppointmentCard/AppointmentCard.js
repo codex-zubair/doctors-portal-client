@@ -4,7 +4,6 @@ import Modal from '../BookingModal/BookingModal';
 const AppointmentCard = ({ appointmentOption ,treatment, setTreatment,selected }) => {
 
     const { name, slots } = appointmentOption;
-    console.log()
     return (
         <div className='card  text-center flex flex-col gap-2 py-5 bg-base-100 shadow-xl'>
             <h3 className='text-xl font-semibold text-secondary'>{name}</h3>

@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import React from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Modal = ({ treatment, selected }) => {
 
@@ -18,18 +19,25 @@ const Modal = ({ treatment, selected }) => {
         const slot = form.slot.value;
 
 
-        console.log(name,email,phone,date,slot);
+        const booking = {
+            name,
+            email,
+            phone,
+            date,
+            slot
+        }
 
+        console.log(booking);
+        toast.success('Thanks! see you soon!')
     }
 
 
     return (
 
         <div>
+                 <div><Toaster/></div>
             {/* The button to open modal */}
-
-
-
+    
             {/* Put this part before </body> tag */}
             <input type="checkbox" id="booking-modal" className="modal-toggle" />
             <div className="modal">
@@ -39,17 +47,17 @@ const Modal = ({ treatment, selected }) => {
                     <form onSubmit={bookingHandler} action="" className='flex flex-col'>
                         <input className='input w-full border my-2' name='date' disabled value={date} type="text" id="" placeholder='type' />
                         <select name="slot" id="">
-                            {slots?.map((item, index) => <option   key={index}>{item}</option>)}
+                            {slots?.map((item, index) => <option key={index}>{item}</option>)}
                         </select>
                         <input className='input w-full border my-2' type="text" name="name" id="" placeholder='Your Name' />
                         <input className='input w-full border my-2' type="text" name="email" id="" placeholder='Email Address' />
                         <input className='input w-full border my-2' type="text" name="phone" id="" placeholder='Phone Number' />
                         <br />
                         <button type='submit' className='btn'>
-                          <label type ='submit' htmlFor="booking-modal" className="w-full btn">Submit</label>
+                            <label type='submit' htmlFor="booking-modal" className="w-full btn">Submit</label>
                         </button>
 
-                       
+
 
                     </form>
                 </div>
