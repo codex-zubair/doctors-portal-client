@@ -7,7 +7,7 @@ import { userAuthContext } from '../../Context/UserContext';
 const Login = () => {
 
 
-    const { LoginWithGoogle , LoginByEmail} = useContext(userAuthContext);
+    const { LoginWithGoogle, LoginByEmail } = useContext(userAuthContext);
 
 
 
@@ -15,24 +15,24 @@ const Login = () => {
 
     // Form values.
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-   
-   
-   
-   
-   
+
+
+
+
+
     const onSubmit = data => {
         LoginByEmail(data.email, data.password)
-        .then(data => {
-            setError('Login Success!');
-            toast.success('Congrats!', { icon: ':)' })
-            console.log(data)
-        })
-        .catch(error => {
-            setError(error.message);
-            console.log(data)
+            .then(data => {
+                setError('Login Success!');
+                toast.success('Login Successful!', { icon: ':)' })
 
-        })
-   
+            })
+            .catch(error => {
+                setError(error.message);
+
+
+            })
+
     };
 
     // console.log(watch("exampleRequired")); // watch input value by passing the name of it
@@ -44,15 +44,14 @@ const Login = () => {
     const email = watch("email");
 
 
-    
+
 
 
     // Login by google
-    const LoginWithGoogleHandler = ()=> 
-    {
+    const LoginWithGoogleHandler = () => {
         LoginWithGoogle()
-        .then(data=> console.log(data))
-        .catch(error=> console.log(error))
+            .then(data => toast.success("Login Successful"))
+            .catch(error => setError(error))
     }
 
 
@@ -74,7 +73,9 @@ const Login = () => {
                 <span className="label-text">Password</span>
             </label>
             {/* include validation with required or other standard HTML validation rules */}
-            <input className='input input-bordered' {...register("password", { required: true })} />
+            <input className='input input-bordered' {...register("password", {
+                minLength: 6
+            })} />
             {/* errors will return when field validation fails  */}
 
             <label className="label">
@@ -83,10 +84,19 @@ const Login = () => {
 
             <div className='text-center'>
                 {errors.name && <span>This field is required</span>}
+
                 <span>{error}</span>
+                <br />
+
+                {errors.password && <span> Min 6 length</span>}
+
+
+
+
             </div>
 
-            <button disabled={password === '' || email === ''} className='btn text-white' type="submit">Login</button>
+         
+            <button    disabled={password === '' || email === ''}  className='btn text-white' type="submit">Login</button>
             <button onClick={LoginWithGoogleHandler} className='btn btn-outline mt-2' type="submit">Login With Google</button>
         </form>
     );
