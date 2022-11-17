@@ -14,3 +14,4 @@
 ### npm install react-hot-toast
 ### npm install react-hook-form
 ### npm install firebase
+### npm i @tanstack/react-query
