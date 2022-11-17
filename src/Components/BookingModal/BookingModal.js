@@ -20,6 +20,7 @@ const Modal = ({ treatment, selected }) => {
 
 
         const booking = {
+            treatment: treatment.name,
             name,
             email,
             phone,
@@ -35,9 +36,9 @@ const Modal = ({ treatment, selected }) => {
     return (
 
         <div>
-                 <div><Toaster/></div>
+            <div><Toaster /></div>
             {/* The button to open modal */}
-    
+
             {/* Put this part before </body> tag */}
             <input type="checkbox" id="booking-modal" className="modal-toggle" />
             <div className="modal">

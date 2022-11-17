@@ -9,7 +9,7 @@ const AppointmentDateSection = ({ selected }) => {
 
     useEffect(() => {
 
-             fetch('appointmentOption.json')
+             fetch('http://localhost:5000/appointment')
             .then(res => res.json())
             .then(data => setAppointmentOptions(data))
        

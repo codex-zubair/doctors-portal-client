@@ -1,7 +1,5 @@
 import React from 'react';
-import fluoride from '../../assets/images/fluoride.png';
-import cavity from '../../assets/images/cavity.png';
-import teeth from '../../assets/images/whitening.png';
+
 
 const ServiceCard = ({ service }) => {
     return (
