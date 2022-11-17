@@ -57,9 +57,9 @@ const Login = () => {
                 toast.success("Login Successful");
 
                 setTimeout(() => {
-                    navigate(from, {replace:true})
+                    navigate(from, { replace: true })
                 }, (1));
-                
+
             })
             .catch(error => setError(error))
     }
@@ -105,8 +105,8 @@ const Login = () => {
 
             </div>
 
-         
-            <button    disabled={password === '' || email === ''}  className='btn text-white' type="submit">Login</button>
+
+            <button disabled={password === '' || email === ''} className='btn text-white' type="submit">Login</button>
             <button onClick={LoginWithGoogleHandler} className='btn btn-outline mt-2' type="submit">Login With Google</button>
         </form>
     );
