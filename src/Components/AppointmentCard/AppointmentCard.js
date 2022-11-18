@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from '../BookingModal/BookingModal';
 
-const AppointmentCard = ({ appointmentOption ,treatment, setTreatment,selected }) => {
+const AppointmentCard = ({ appointmentOption ,treatment, setTreatment,selected,refetch}) => {
 
     const { name, slots } = appointmentOption;
     return (
@@ -14,12 +14,8 @@ const AppointmentCard = ({ appointmentOption ,treatment, setTreatment,selected }
                 {slots?.length} {slots?.length > 1 ? 'spaces' : 'space'} available!</p>
 
 
-
-
-
-            <p>10 SPACES AVAILABLE</p>
             <div className='w-10/12 mx-auto'>
-                <Modal  selected={selected} treatment={treatment}></Modal>
+                <Modal refetch ={refetch}  selected={selected} treatment={treatment}></Modal>
                 <label disabled = {slots.length === 0} onClick={()=> setTreatment(appointmentOption)} htmlFor="booking-modal" className='btn bg-gradient-to-r from-secondary to-primary border-none text-white hover:bg-gradient-to-r hover:from-primary hover:to-secondary'>Book Appointment</label>
             </div>
         </div>

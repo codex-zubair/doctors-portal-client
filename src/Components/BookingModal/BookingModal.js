@@ -1,8 +1,12 @@
 import { format } from 'date-fns';
-import React from 'react';
+import React, { useContext } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { userAuthContext } from '../../Context/UserContext';
 
-const Modal = ({ treatment, selected }) => {
+const Modal = ({ treatment, selected,refetch}) => {
+
+
+    const { user } = useContext(userAuthContext);
 
     const { slots, name } = treatment;
     const date = format(selected, 'PP');
@@ -19,6 +23,7 @@ const Modal = ({ treatment, selected }) => {
         const slot = form.slot.value;
 
 
+        
         const booking = {
             treatment: treatment.name,
             name,
@@ -27,9 +32,25 @@ const Modal = ({ treatment, selected }) => {
             date,
             slot
         }
+      
 
-        console.log(booking);
-        toast.success('Thanks! see you soon!')
+        fetch('http://localhost:5000/bookings', {
+            method: 'POST',
+
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                 toast.success('Thanks! see you soon!')
+                 refetch()
+                })
+            .catch(error => console.log(error))
+
+
     }
 
 
@@ -50,8 +71,8 @@ const Modal = ({ treatment, selected }) => {
                         <select name="slot" id="">
                             {slots?.map((item, index) => <option key={index}>{item}</option>)}
                         </select>
-                        <input className='input w-full border my-2' type="text" name="name" id="" placeholder='Your Name' />
-                        <input className='input w-full border my-2' type="text" name="email" id="" placeholder='Email Address' />
+                        <input className='input w-full border my-2' type="text" defaultValue={`${user.displayName}`} name="name" id="" placeholder='Your Name' />
+                        <input className='input w-full border my-2' type="text" defaultValue={`${user.email}`} name="email" id="" placeholder='Email Address' />
                         <input className='input w-full border my-2' type="text" name="phone" id="" placeholder='Phone Number' />
                         <br />
                         <button type='submit' className='btn'>

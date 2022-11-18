@@ -1,12 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { userAuthContext } from '../../Context/UserContext';
 
 const Register = () => {
 
-    const { emailSignUp ,logOut} = useContext(userAuthContext);
+    const { emailSignUp} = useContext(userAuthContext);
+
+    // login system
+    const navigate = useNavigate();
 
 
     // const [form,setForm] = useState({});
@@ -24,13 +27,12 @@ const Register = () => {
         .then(data=> {
             setError('Sign Up Success!');
             toast.success('Congrats!', {icon:':)'})
-            console.log(data)
-            logOut();
+            navigate('/')
         })
         .catch(error=> {
             setError(error.message)
             console.log(error)
-            console.log(data)
+           
 
         })
     };
