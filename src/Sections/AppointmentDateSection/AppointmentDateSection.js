@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import React, { useState } from 'react';
 import AppointmentCard from '../../Components/AppointmentCard/AppointmentCard';
+import Loading from '../../Shared/Loading/Loading';
 
 const AppointmentDateSection = ({ selected }) => {
 
@@ -24,7 +25,7 @@ const AppointmentDateSection = ({ selected }) => {
 
 
 
-    const { data:appointmentOptions , refetch } = useQuery({
+    const { data:appointmentOptions , refetch,isLoading } = useQuery({
         // !Dependence
         queryKey: ['appointmentOptions',date],
         // ! Ass like an use loader of loader
@@ -34,7 +35,10 @@ const AppointmentDateSection = ({ selected }) => {
           )
       })
 
-
+      if(isLoading)
+      {
+        return  <Loading></Loading>
+      }
 
     return (
         <section className='my-28'>
