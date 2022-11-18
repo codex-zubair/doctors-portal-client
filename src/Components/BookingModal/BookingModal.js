@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { userAuthContext } from '../../Context/UserContext';
 
-const Modal = ({ treatment, selected,refetch}) => {
+const Modal = ({ treatment, selected, refetch }) => {
 
 
     const { user } = useContext(userAuthContext);
@@ -23,7 +23,7 @@ const Modal = ({ treatment, selected,refetch}) => {
         const slot = form.slot.value;
 
 
-        
+
         const booking = {
             treatment: treatment.name,
             name,
@@ -32,7 +32,7 @@ const Modal = ({ treatment, selected,refetch}) => {
             date,
             slot
         }
-      
+
 
         fetch('http://localhost:5000/bookings', {
             method: 'POST',
@@ -45,9 +45,16 @@ const Modal = ({ treatment, selected,refetch}) => {
         })
             .then(res => res.json())
             .then(data => {
-                 toast.success('Thanks! see you soon!')
-                 refetch()
-                })
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success('Thanks! see you soon!')
+                    refetch()
+                }
+
+                else{
+                    toast.error(data.message)
+                }
+            })
             .catch(error => console.log(error))
 
 
@@ -71,8 +78,8 @@ const Modal = ({ treatment, selected,refetch}) => {
                         <select name="slot" id="">
                             {slots?.map((item, index) => <option key={index}>{item}</option>)}
                         </select>
-                        <input className='input w-full border my-2' type="text" defaultValue={`${user.displayName}`} name="name" id="" placeholder='Your Name' />
-                        <input className='input w-full border my-2' type="text" defaultValue={`${user.email}`} name="email" id="" placeholder='Email Address' />
+                        <input className='input w-full border my-2' type="text" defaultValue={`${user?.displayName}`} name="name" id="" placeholder='Your Name' />
+                        <input className='input w-full border my-2' type="text" defaultValue={`${user?.email}`} name="email" id="" placeholder='Email Address' />
                         <input className='input w-full border my-2' type="text" name="phone" id="" placeholder='Phone Number' />
                         <br />
                         <button type='submit' className='btn'>
