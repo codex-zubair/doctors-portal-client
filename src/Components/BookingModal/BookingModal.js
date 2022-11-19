@@ -47,11 +47,11 @@ const Modal = ({ treatment, selected, refetch }) => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
-                    toast.success('Thanks! see you soon!')
+                    toast.success('Booking Confirm!')
                     refetch()
                 }
 
-                else{
+                else {
                     toast.error(data.message)
                 }
             })

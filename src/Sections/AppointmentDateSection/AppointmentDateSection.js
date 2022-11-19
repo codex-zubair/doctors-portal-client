@@ -39,6 +39,8 @@ const AppointmentDateSection = ({ selected }) => {
       {
         return  <Loading></Loading>
       }
+   
+      
 
     return (
         <section className='my-28'>
