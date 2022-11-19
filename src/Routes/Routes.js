@@ -9,6 +9,7 @@ import Register from "../Pages/Register/Register";
 import Reviews from '../Pages/Reviews/Reviews';
 import PrivateRoute from '../Routes/PrivateRoute';
 import Dashboard from "../Layout/Dashboard/Dashboard";
+import MyAppointment from "../AdminPages/MyAppointment/MyAppointment";
 
 
 
@@ -42,7 +43,7 @@ export const route = createBrowserRouter([
     {
         path:'/dashboard', element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>, children:[
             {
-                
+                path:'/dashboard' , element: <MyAppointment></MyAppointment>
             }
         ]
     }
