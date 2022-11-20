@@ -6,7 +6,7 @@ import { userAuthContext } from '../../Context/UserContext';
 
 const Register = () => {
 
-    const { emailSignUp } = useContext(userAuthContext);
+    const { emailSignUp, updateProfileName } = useContext(userAuthContext);
 
     // login system
     const navigate = useNavigate();
@@ -29,10 +29,19 @@ const Register = () => {
         emailSignUp(email, name)
             .then(result => {
 
-                //! Storing Data into our data base
 
+
+                // !Updating user name
+
+                // !Updating User name
+                updateProfileName(name)
+                    .then(res => toast("success"))
+                    .catch(error => console.log(error));
+
+
+                //! Storing Data into our data base
                 const user = {
-                    name: result.user.displayName,
+                    name,
                     email: result.user.email
                 }
 
@@ -44,13 +53,17 @@ const Register = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
+
                         if (data.acknowledged) {
+
+
                             setError('Sign Up Success!');
                             toast.success('Congrats!', { icon: ':)' })
                             setTimeout(() => {
                                 navigate('/')
                             }, 1500);
+
+
                         }
 
                     })

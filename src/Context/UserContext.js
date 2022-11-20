@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from '../Firebase/Firebase.config';
 
 
@@ -46,12 +46,14 @@ const UserContext = ({ children }) => {
     }
 
 
-    // // !Set profile name and photo
-    // const updateProfile = (name) => {
-    //     return updateProfile(auth.currentUser, {
-    //         displayName: name
-    //     })
-    // }
+    // !Set profile name and photo
+    const updateProfileName = (name) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name
+        })
+    }
+
+
 
 
     // !Observer
@@ -73,7 +75,7 @@ const UserContext = ({ children }) => {
 
 
 
-    const userInfo = { emailSignUp, LoginByEmail, user, logOut, LoginWithGoogle  }
+    const userInfo = { emailSignUp, LoginByEmail, user, logOut, LoginWithGoogle, updateProfileName }
 
     return (
         <userAuthContext.Provider value={userInfo}>
