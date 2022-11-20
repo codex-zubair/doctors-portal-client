@@ -15,7 +15,7 @@ const MyAppointment = () => {
     })
 
 
-    console.log(bookings)
+
 
 
 
@@ -39,7 +39,7 @@ const MyAppointment = () => {
                     </thead>
                     <tbody>
                         {/* <!-- row 1 --> */}
-                        {bookings?.map((booked, index)=> <tr>
+                        {bookings?.map((booked, index)=> <tr key={index}>
                             <th>{1+index}</th>
                             <td>{booked.name}</td>
                             <td>{booked.treatment}</td>
