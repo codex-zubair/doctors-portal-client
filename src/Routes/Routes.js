@@ -11,7 +11,7 @@ import PrivateRoute from '../Routes/PrivateRoute';
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import MyAppointment from "../AdminPages/MyAppointment/MyAppointment";
 import AllUserList from "../AdminPages/AllUserList/AllUserList";
-import Book from "../AdminPages/Book/Book";
+
 
 
 
@@ -46,7 +46,7 @@ export const route = createBrowserRouter([
     },
 
     {
-        path: '/dashboard', element: <Dashboard></Dashboard>, children: [
+        path: '/dashboard', element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>, children: [
 
             {
                 path: '/dashboard', element: <MyAppointment></MyAppointment>

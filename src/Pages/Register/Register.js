@@ -6,7 +6,7 @@ import { userAuthContext } from '../../Context/UserContext';
 
 const Register = () => {
 
-    const { emailSignUp} = useContext(userAuthContext);
+    const { emailSignUp } = useContext(userAuthContext);
 
     // login system
     const navigate = useNavigate();
@@ -16,25 +16,51 @@ const Register = () => {
     const [error, setError] = useState(null);
 
     // Form values.
-    const { register, handleSubmit,watch, formState: { errors } } = useForm();
-   
-   
-   
-   
-//    register form
-    const onSubmit = data => {
-        emailSignUp(data.email,data.password)
-        .then(data=> {
-            setError('Sign Up Success!');
-            toast.success('Congrats!', {icon:':)'})
-            navigate('/')
-        })
-        .catch(error=> {
-            setError(error.message)
-            console.log(error)
-           
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-        })
+
+
+
+    //    register form
+    const onSubmit = data => {
+        emailSignUp(data.email, data.password)
+            .then(data => {
+
+                //! Storing Data into our data base
+
+                const user = {
+                    email: data.email,
+                    name: data.name
+                }
+
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify(user)
+
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data.acknowledged)
+                        {
+                            setError('Sign Up Success!');
+                            toast.success('Congrats!', { icon: ':)' })
+                            setTimeout(() => {
+                                navigate('/')
+                            }, 1500);
+                        }
+                      
+                    })
+                    .catch(error => console.log(error))
+                
+            })
+            .catch(error => {
+                setError(error.message)
+                console.log(error)
+
+
+            })
+
     };
 
     // console.log(watch("exampleRequired")); // watch input value by passing the name of it
@@ -44,7 +70,7 @@ const Register = () => {
     // Button disabled enabled
     const password = watch("password");
     const email = watch("email");
-    
+
 
 
 
@@ -59,7 +85,7 @@ const Register = () => {
     return (
         /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
         <form onSubmit={handleSubmit(onSubmit)} className='card p-10 my-40 flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto' >
-        <Toaster/>
+            <Toaster />
             <h1 className='text-center text-2xl'>Please Sign Up</h1>
             <label className="label">
                 <span className="label-text">Name</span>
@@ -92,7 +118,7 @@ const Register = () => {
                 <span>{error}</span>
             </div>
 
-             <button disabled={password === ''|| email ===''} className='btn text-white' type="submit">Sign Up</button>
+            <button disabled={password === '' || email === ''} className='btn text-white' type="submit">Sign Up</button>
         </form>
     );
 };
