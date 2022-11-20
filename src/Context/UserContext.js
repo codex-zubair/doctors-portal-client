@@ -46,6 +46,14 @@ const UserContext = ({ children }) => {
     }
 
 
+    // // !Set profile name and photo
+    // const updateProfile = (name) => {
+    //     return updateProfile(auth.currentUser, {
+    //         displayName: name
+    //     })
+    // }
+
+
     // !Observer
     useEffect(() => {
         const sub = onAuthStateChanged(auth, (currentUser) => {
@@ -65,7 +73,7 @@ const UserContext = ({ children }) => {
 
 
 
-    const userInfo = { emailSignUp, LoginByEmail, user, logOut, LoginWithGoogle }
+    const userInfo = { emailSignUp, LoginByEmail, user, logOut, LoginWithGoogle  }
 
     return (
         <userAuthContext.Provider value={userInfo}>

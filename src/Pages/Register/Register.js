@@ -23,14 +23,17 @@ const Register = () => {
 
     //    register form
     const onSubmit = data => {
-        emailSignUp(data.email, data.password)
-            .then(data => {
+        const name = data.name;
+        const email = data.email;
+        // !Email sign up system
+        emailSignUp(email, name)
+            .then(result => {
 
                 //! Storing Data into our data base
 
                 const user = {
-                    email: data.email,
-                    name: data.name
+                    name: result.user.displayName,
+                    email: result.user.email
                 }
 
                 fetch('http://localhost:5000/users', {
@@ -41,18 +44,18 @@ const Register = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        if(data.acknowledged)
-                        {
+                        console.log(data);
+                        if (data.acknowledged) {
                             setError('Sign Up Success!');
                             toast.success('Congrats!', { icon: ':)' })
                             setTimeout(() => {
                                 navigate('/')
                             }, 1500);
                         }
-                      
+
                     })
                     .catch(error => console.log(error))
-                
+
             })
             .catch(error => {
                 setError(error.message)
