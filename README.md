@@ -22,4 +22,5 @@
 # Features
 ### Admin Dashboard
 ### ALL User info section for admin
-### 
+### Admin can make another one admin
+### user can't make another admin
